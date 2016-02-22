@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_type_id: 1
+  happen_in: 2016-02-22 10:21:15
+
+two:
+  event_type_id: 1
+  happen_in: 2016-02-22 10:21:15
