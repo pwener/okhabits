@@ -44,4 +44,11 @@
       <%= render 'form' %>
     </div>
 
-    <h3 class="text-center">Dica do dia: Phelipe vai ganhar... AHAHHAHA</h3>
+    <div class="text-center">
+      <h2>Values</h2>
+      <% EventType.all.each do |e| %>
+        <%= e.name + " = #{e.points}" %> |
+      <% end %>
+    </div>
+
+    <h4 class="text-center">Dica do dia: Phelipe vai ganhar... AHAHHAHA</h4>
