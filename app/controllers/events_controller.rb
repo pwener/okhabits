@@ -12,8 +12,17 @@ class EventsController < ApplicationController
   def index
     @event = Event.new
     @your_events = Event.where(author_id: current_user.id)
+                        .paginate(page: params[:page])
+                        .order('id DESC')
+
     @enemy = User.find(current_user.enemy_id)
     @enemy_events = Event.where(author_id: current_user.enemy_id)
+                         .paginate(page: params[:page])
+                         .order('id DESC')
+
+    @score_that_have_more = @enemy_events if @enemy_events.size > 7
+                            else @score_that_have_more = @your_events
+
   end
 
   # GET /events/1
