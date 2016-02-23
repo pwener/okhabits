@@ -1,29 +1,45 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center">Events</h1>
 
-<h1>Listing Events</h1>
+    <div class="row">
 
-<table>
-  <thead>
-    <tr>
-      <th>Event type</th>
-      <th>Happen in</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="col-md-6 text-right content-right">
+        <div class="total">
+          <%= current_user.sum_scoreboard %>
+        </div>
+        <% @your_events.each do |event| %>
+          <div class="event">
+            <%= EventType.find(event.event_type_id).name %><br/>
+            <span class="date">
+              <%= event.happen_in.strftime("%d/%m/%Y at %H:%M hours") %>
+            </span>
+            <br>
+            <%= link_to '', event, class: 'glyphicon glyphicon-eye-open' %>
+            <%= link_to '', edit_event_path(event), class: 'glyphicon glyphicon-edit' %>
+            <%= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove' %>
+          </div>
+        <% end %>
+      </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.event_type_id %></td>
-        <td><%= event.happen_in %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+      <div class="col-md-6 text-left">
+        <div class="total">
+          <%= @enemy.sum_scoreboard %>
+        </div>
+        <% @enemy_events.each do |event| %>
+          <div class="event">
+            <%= EventType.find(event.event_type_id).name %><br/>
+            <span class="date">
+              <%= event.happen_in.strftime("%d/%m/%Y at %H:%M hours") %>
+            </span>
+            <br>
+            <%= link_to '', event, class: 'glyphicon glyphicon-eye-open' %>
+            <%= link_to '', edit_event_path(event), class: 'glyphicon glyphicon-edit' %>
+            <%= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <%= render 'form' %>
+    </div>
 <br>
-
-<%= link_to 'New Event', new_event_path %>

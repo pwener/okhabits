@@ -1,20 +1,24 @@
 class EventsController < ApplicationController
+  # include LoginFilters
+  #
+  # skip_before_filter :verify_authenticity_token, only: :create
+
+  before_action :authenticate_user!, only: [:create, :index]
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @event = Event.new
+    @your_events = Event.where(author_id: current_user.id)
+    @enemy = User.find(current_user.enemy_id)
+    @enemy_events = Event.where(author_id: current_user.enemy_id)
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
-  end
-
-  # GET /events/new
-  def new
-    @event = Event.new
   end
 
   # GET /events/1/edit
@@ -25,16 +29,16 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.author_id = current_user.id
+    @event.happen_in = Time.now
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.save
+      flash[:notice] = "Event has been created"
+    else
+      flash[:danger] = "Some error occurs and event was not created"
     end
+
+    redirect_to events_path
   end
 
   # PATCH/PUT /events/1
@@ -69,6 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_type_id, :happen_in)
+      params.require(:event).permit(:event_type_id)
     end
 end
