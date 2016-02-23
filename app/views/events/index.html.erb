@@ -1,12 +1,13 @@
 <%= render 'layouts/navbar' %>
 
-<h1 class="text-center">Events</h1>
+<h1 class="text-center">Scoreboard</h1>
 
     <div class="row">
 
       <div class="col-md-4 col-md-offset-2 text-right content-right">
         <div class="score">
-          <%= current_user.sum_scoreboard %>
+          <small><%= current_user.username %></small>
+          <span><%= current_user.sum_scoreboard %></span>
         </div>
         <% @your_events.each do |event| %>
           <div class="event">
@@ -24,18 +25,16 @@
 
       <div class="col-md-4 text-left">
         <div class="score">
-          <%= @enemy.sum_scoreboard %>
+          <span><%= @enemy.sum_scoreboard %></span>
+          <small><%= @enemy.username %></small>
         </div>
         <% @enemy_events.each do |event| %>
-          <div class="event">
+          <div class="event enemy_events">
             <%= EventType.find(event.event_type_id).name %><br/>
             <span class="date">
               <%= event.happen_in.strftime("%d/%m/%Y at %H:%M hours") %>
             </span>
             <br>
-            <%= link_to '', event, class: 'glyphicon glyphicon-eye-open' %>
-            <%= link_to '', edit_event_path(event), class: 'glyphicon glyphicon-edit' %>
-            <%= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove' %>
           </div>
         <% end %>
       </div>
@@ -44,3 +43,5 @@
     <div class="row">
       <%= render 'form' %>
     </div>
+
+    <h3 class="text-center">Dica do dia: Phelipe vai ganhar... AHAHHAHA</h3>

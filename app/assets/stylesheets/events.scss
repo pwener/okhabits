@@ -7,6 +7,7 @@ a:HOVER {
 }
 
 .event {
+  padding: 5px;
   border-bottom: solid 1px #DCDCDC;
 }
 
@@ -14,13 +15,22 @@ a:HOVER {
   margin-left: 10px;
 }
 
-.score {
+.score span {
   font-size: 64px;
   color: red;
 }
 
+.score small {
+  font-size: 24px;
+  color: gray;
+}
+
 .date {
   font-size: 12px;
+}
+
+.enemy_events {
+  padding-bottom: 25px;
 }
 
 .content-right {
