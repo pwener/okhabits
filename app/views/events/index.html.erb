@@ -4,7 +4,7 @@
 
     <div class="row">
 
-      <div class="col-md-4 col-md-offset-2 text-right content-right">
+      <div class="col-md-4 col-xs-4 col-xs-offset-2 text-right content-right">
         <div class="score">
           <small><%= current_user.username %></small>
           <span><%= current_user.sum_scoreboard %></span>
@@ -23,7 +23,7 @@
         <% end %>
       </div>
 
-      <div class="col-md-4 text-left">
+      <div class="col-md-4 col-xs-4 text-left">
         <div class="score">
           <span><%= @enemy.sum_scoreboard %></span>
           <small><%= @enemy.username %></small>
