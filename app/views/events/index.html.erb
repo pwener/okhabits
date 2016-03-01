@@ -40,10 +40,12 @@
       </div>
     </div>
     <br/>
-    <div class="row">
-      <%= will_paginate @score_that_have_more %>
+    <div class="row text-center">
+      <div class="apple_pagination">
+        <%= will_paginate @score_that_have_more %>
+      </div>
 
-      <%= render 'form' %>
+        <%= render 'form' %>
     </div>
 
     <div class="text-center">
@@ -53,4 +55,4 @@
       <% end %>
     </div>
 
-    <h4 class="text-center">Dica do dia: Phelipe vai ganhar... AHAHHAHA</h4>
+    <h4 class="text-center text-danger">Valendo: Qualquer desejo!</h4>
