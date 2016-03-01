@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.author_id = current_user.id
-    @event.happen_in = Time.now
+    @event.happen_in = Time.zone.now
 
     if @event.save
       flash[:notice] = "Event has been created"
